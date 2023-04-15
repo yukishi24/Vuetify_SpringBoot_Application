@@ -2,28 +2,23 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.service.PracticeService;
-import com.example.demo.service.PracticeServiceImpl;
+import com.example.demo.dto.DataDTO;
+import com.example.demo.repository.DataRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/practice")
+@RequiredArgsConstructor
 public class PracticeController {
-	private final PracticeService practiceService;
+	private final DataRepository dataRepository;
 
-	@Autowired
-	public PracticeController(PracticeServiceImpl practiceService) {
-		this.practiceService = practiceService;
-	}
-
-	@GetMapping
-	public List<String> getAll() {
-		List<String> list = practiceService.getAll();
-
-		return list;
+	@GetMapping("/home")
+	public List<DataDTO> getData(Model model) {
+		List<DataDTO> DTOList = dataRepository.getAll();
+		return DTOList;
 	}
 }
