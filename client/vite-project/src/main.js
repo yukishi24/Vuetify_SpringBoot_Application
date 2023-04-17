@@ -10,7 +10,7 @@
 //   .mount('#app')
 
 import { createApp } from 'vue'
-import Home from './Home.vue'
+import Home from './Sample.vue'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 
