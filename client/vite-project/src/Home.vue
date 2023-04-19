@@ -5,7 +5,11 @@
                 <v-btn icon="mdi-menu"></v-btn>
                     社員一覧
             </v-toolbar>
-            <div>{{ people }}</div>
+            <v-data-table
+                :headers="headers"
+                :items="people"
+                >
+    </v-data-table>
         </v-card>
     </v-app>
 </template>
@@ -13,9 +17,21 @@
 <script>
 import axios from 'axios'
 export default{
-    data(){
-        return{
-            people: []
+    data () {
+        return {
+        people: [],
+        singleSelect: false,
+            selected: [],
+            headers: [
+            {
+                align: 'start',
+                sortable: false,
+            },
+            { title: 'ID', value: 'id' },
+            { title: '氏名', value: 'name' },
+            { title: '社員コード', value: 'code' },
+            { title: '所属名', value: 'belong_nm' },
+            ],
         }
     },
     methods:{
