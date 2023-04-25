@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  app:
+    build: 
+        context: ./app
+        dockerfile: Dockerfile
+    container_name: java
+    tty: true
+    ports:
+      - 8080:8080
+      - 5050:5050
+    working_dir: /doc
+    volumes:
+      - ./app:/doc
+    depends_on:
+      - db
+
+  db:
+    build:
+        context: ./db
+        dockerfile: Dockerfile
+    platform: linux/x86_64
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
