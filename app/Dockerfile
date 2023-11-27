@@ -1,2 +1,1 @@
-FROM openjdk:18
-RUN microdnf install findutils
+FROM eclipse-temurin:18
